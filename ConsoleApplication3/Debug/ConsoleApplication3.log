@@ -1,13 +1,22 @@
-﻿Build started 9/20/2016 12:22:21 PM.
-     1>Project "C:\Users\Eduarda\documents\visual studio 2013\Projects\ConsoleApplication3\ConsoleApplication3\ConsoleApplication3.vcxproj" on node 2 (Build target(s)).
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (ConsoleApplication3.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Eduarda\documents\visual studio 2013\Projects\ConsoleApplication3\Debug\MiniProjeto 8 Rainhas.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Eduarda\documents\visual studio 2013\Projects\ConsoleApplication3\Debug\MiniProjeto 8 Rainhas.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Eduarda\documents\visual studio 2013\Projects\ConsoleApplication3\Debug\MiniProjeto 8 Rainhas.lib" /MACHINE:X86 Debug\ConsoleApplication3.obj
+﻿Build started 10/15/2016 1:56:52 AM.
+     1>Project "C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\ConsoleApplication3\ConsoleApplication3.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (ConsoleApplication3.vcxproj, MiniProjeto 8 Rainhas.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\Projeto1Ackley.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AckleyOptimization.cpp
+         AckleyOptimization.cpp
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyeegenotype.h(154): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyeegenotype.h(171): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyeegenotype.h(185): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyoptimization.cpp(23): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyoptimization.cpp(55): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyoptimization.cpp(62): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyoptimization.cpp(83): warning C4018: '<' : signed/unsigned mismatch
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Debug\Projeto1Ackley.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Debug\Projeto1Ackley.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Debug\Projeto1Ackley.lib" /MACHINE:X86 Debug\AckleyOptimization.obj
          Debug\stdafx.obj
-     1>ConsoleApplication3.obj : error LNK2019: unresolved external symbol "public: __thiscall genotype::~genotype(void)" (??1genotype@@QAE@XZ) referenced in function _wmain
-     1>C:\Users\Eduarda\documents\visual studio 2013\Projects\ConsoleApplication3\Debug\MiniProjeto 8 Rainhas.exe : fatal error LNK1120: 1 unresolved externals
-     1>Done Building Project "C:\Users\Eduarda\documents\visual studio 2013\Projects\ConsoleApplication3\ConsoleApplication3\ConsoleApplication3.vcxproj" (Build target(s)) -- FAILED.
+         ConsoleApplication3.vcxproj -> C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Debug\Projeto1Ackley.exe
+     1>Done Building Project "C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\ConsoleApplication3\ConsoleApplication3.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.28
+Time Elapsed 00:00:00.95
