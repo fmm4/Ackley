@@ -49,14 +49,22 @@ private:
 	{
 		normal_distribution<double> distribution(0, 1);
 		double value = mutationSteps[position] * exp(globalLR*distribution(gen) + localLR*distribution(gen));
-		if (value >= 13 + 2){
-			value = 13 + 2;
-		}
-		else if (value <= -13 - 2)
-		{
-			value = -13 - 2;
-		}
 		mutationSteps[position] = value;
+	}
+
+	//Garantir que esta entre quinze e menos quinze//
+	void check_range_valid(double min, double max)
+	{
+		for (int i = 0; i < geneValues.size(); i++)
+		{
+			if (geneValues[i]>12 + 3)
+			{
+				geneValues[i] = 12 + 3;
+			}
+			else if(geneValues[i]<-(12+3)){
+				geneValues[i] = -(12 + 3);
+			}
+		}
 	}
 
 	//mutaciona os valores do gene especificado, verificar slides da aula 10, pg 9
@@ -80,7 +88,7 @@ public:
 
 		for (int i = 0; i < size; i++)
 		{
-			geneValues.push_back((rand() % 31)-(12+3));
+			geneValues.push_back(fRand(-15, 15));
 			mutationSteps.push_back(distribution(gen));
 			mutationAngles.push_back(0);
 		}
@@ -88,6 +96,14 @@ public:
 		//ajusta a taxa de aprendizado, ver slides da aula 10, pg 9
 		startLearningRatio(30);
 	};
+
+	//Float Random//
+	//Gera um float aleatorio
+	double fRand(double fMin, double fMax)
+	{
+		double f = (double)rand() / RAND_MAX;
+		return fMin + f * (fMax - fMin);
+	}
 
 	//retorna os gene da posicao no individuo//
 	double getGene(int i)
@@ -155,7 +171,6 @@ public:
 		{
 			midpoint.geneValues[i] = (parent.geneValues[i] + geneValues[i]) / 2;
 			midpoint.mutationSteps[i] = (parent.mutationSteps[i] + mutationSteps[i]) / 2;
-
 		}
 
 		return midpoint;
@@ -172,7 +187,6 @@ public:
 		{
 			global_child.geneValues[i] = (population[rand() % 30].geneValues[i] + population[rand() % 30].geneValues[i]) / 2;
 			global_child.mutationSteps[i] = (population[rand() % 30].mutationSteps[i] + population[rand() % 30].mutationSteps[i]) / 2;
-
 		}
 
 		return global_child;
@@ -184,12 +198,13 @@ public:
 	void applyMutation(int chance){
 		for (int i = 0; i < mutationSteps.size(); i++)
 		{
-			if ((rand() % 100) < chance )
+			if ((rand() % 100) < chance)
 			{
 				mutateMutationSteps(i);
 				mutateGenes(i);
 			}
 		}
+		check_range_valid(-13 - 2, 13 + 2);
 		getAckley();
 	}
 
@@ -199,6 +214,17 @@ public:
 	{
 		globalLR = 1/ (pow(2*n,1/2));
 		localLR = 1 / (pow((pow(2 * n, 1 / 2)), 1 / 2));
+	}
+
+	//Debug//
+	void debugGene(){
+		cout << "[";
+		for (int i = 0; i < geneValues.size(); i++)
+		{
+			cout << (geneValues[i]);
+			if (i != geneValues.size() - 1) cout << " ,";
+		}
+		cout << "]" << endl;
 	}
 
 };
