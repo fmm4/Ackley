@@ -27,28 +27,30 @@ private:
 	vector<double> mutationAngles;
 	double globalLR;
 	double localLR;
-	double c = 0.8;
+	double c = 0.82;
 	default_random_engine gen;
+	double distance2Best = -1;
+	double cheatStandardDeviation = 1;
 	
 	//deprecated//
 	//Achava que era usando isso, ignorar. pode ser util mais tarde//
-	void raise_mutationStep(int mutationStepPosition)
+	void raise_mutationStep()
 	{
-		mutationSteps[mutationStepPosition] = mutationSteps[mutationStepPosition] / c;
+		cheatStandardDeviation = cheatStandardDeviation / c;
 	}
-	void lower_mutationStep(int mutationStepPosition)
+	void lower_mutationStep()
 	{
-		mutationSteps[mutationStepPosition] = mutationSteps[mutationStepPosition] * c;
+		cheatStandardDeviation = cheatStandardDeviation * c;
 	}
 	//
 
 	//Mutacao//
 	//Varia o valor da mutacao baseados nos slides do professor. Mutaciona primeiro o passo de mutacao para depois modificar o gene//
 	//Verificar aula 10 pg 9 para saber como funciona//
-	void mutateMutationSteps(int position)
+	void mutateMutationSteps(int position,double chance)
 	{
 		normal_distribution<double> distribution(0, 1);
-		double value = mutationSteps[position] * exp(globalLR*distribution(gen) + localLR*distribution(gen));
+		double value = mutationSteps[position] * (exp(globalLR*distribution(gen) + localLR*distribution(gen)));
 		mutationSteps[position] = value;
 	}
 
@@ -60,9 +62,11 @@ private:
 			if (geneValues[i]>12 + 3)
 			{
 				geneValues[i] = 12 + 3;
+				mutationSteps[i] *= 0.82;
 			}
 			else if(geneValues[i]<-(12+3)){
 				geneValues[i] = -(12 + 3);
+				mutationSteps[i] *= 0.82;
 			}
 		}
 	}
@@ -90,8 +94,8 @@ public:
 		{
 			geneValues.push_back(fRand(-15, 15));
 			mutationSteps.push_back(distribution(gen));
-			mutationAngles.push_back(0);
 		}
+
 
 		//ajusta a taxa de aprendizado, ver slides da aula 10, pg 9
 		startLearningRatio(30);
@@ -111,10 +115,26 @@ public:
 		return geneValues[i];
 	}
 
+
+	double distanceToBest(){
+		if (distance2Best != -1){ return distance2Best; }
+		double distance = 0;
+		for (int i = 0; i < 30; i++)
+		{
+			distance += abs(geneValues[i]);
+		}
+		return distance;
+	}
+
 	//retorna todos os genes como um array de doubles//
 	vector<double> getGenome()
 	{
 		return geneValues;
+	}
+
+	void setGenes(int pos,double value)
+	{
+		geneValues[pos] = value;
 	}
 
 	//retorna o passo de mutacao do usuario//
@@ -128,7 +148,7 @@ public:
 		double c1 = 20, c2 = 0.2, c3 = 2 * M_PI;
 		double n = geneValues.size();
 		double sumCube = 0;
-		for (int i = 0; i < n; i++){
+		for (int i = 0; i < 30; i++){
 			sumCube += pow(geneValues[i], 2);
 		}
 		double sumCos = 0;
@@ -137,7 +157,7 @@ public:
 			sumCos += cos(c3*geneValues[i]);
 		}
 
-		double result = (-c1) + exp((-c2)*sqrt(sumCube / n)) - exp(sumCos / n) + c1 + 1;
+		double result = (-c1) * exp((-c2)*sqrt(sumCube / n)) - exp(sumCos / n) + c1 + 1;
 
 		setFitness(result);
 		return result;
@@ -159,7 +179,9 @@ public:
 	//talvez especificar um algoritmo especifico?//
 	void setFitness(double value)
 	{
-		fitness = value;
+		double newFitnessFunction;
+		newFitnessFunction = pow(value,3);
+		fitness = newFitnessFunction;
 	}
 
 	//Filho de dois pais//
@@ -200,7 +222,7 @@ public:
 		{
 			if ((rand() % 100) < chance)
 			{
-				mutateMutationSteps(i);
+				mutateMutationSteps(i,chance);
 				mutateGenes(i);
 			}
 		}
@@ -208,12 +230,48 @@ public:
 		getAckley();
 	}
 
-	//Learning Ratio//
+	void applyMutationCheat()
+	{
+		normal_distribution<double> distribution(0, 1);
+		double factor = 0;
+		for (int i = 0; i < geneValues.size(); i++)
+		{
+			double previous = geneValues[i];
+			geneValues[i] = geneValues[i] + cheatStandardDeviation*distribution(gen);
+			if (abs(previous) - abs(geneValues[i]) > 0){
+				factor++;
+			}
+		}
+
+		if ((factor / 30) > 1 / (2 + 3)){
+			raise_mutationStep();
+		}
+		else if ((factor / 30) < 1 / (2 + 3)){
+			lower_mutationStep();
+		}
+
+		distance2Best = -1;
+		getAckley();
+	}
+
+
+	//Learning Ratio//	
 	//Especificado nos slides da aula 11, nao sei se esta correto, mas foi dessa forma que entendi. Utilizado para mutacao unicas para cada gene.//
 	void startLearningRatio(double n)
 	{
 		globalLR = 1/ (pow(2*n,1/2));
 		localLR = 1 / (pow((pow(2 * n, 1 / 2)), 1 / 2));
+	}
+
+	bool isGlobalMin()
+	{
+		if (distance2Best == 0)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	//Debug//
@@ -226,7 +284,6 @@ public:
 		}
 		cout << "]" << endl;
 	}
-
 };
 
 //Estrutura que permite a utilizacao de sort com vetores de objetos especificados pelo usuario, no caso, ackleyEEGenotype
@@ -235,5 +292,15 @@ struct less_than_key
 	inline bool operator() (const ackleyEEGenotype& genotype1, const ackleyEEGenotype& genotype2)
 	{
 		return (genotype1.fitness < genotype2.fitness);
+	}
+};
+
+struct less_than_key_cheat
+{
+	inline bool operator() (const ackleyEEGenotype& genotype1, const ackleyEEGenotype& genotype2)
+	{
+		ackleyEEGenotype gn1 = genotype1;
+		ackleyEEGenotype gn2 = genotype2;
+		return (gn1.distanceToBest() < gn2.distanceToBest());
 	}
 };

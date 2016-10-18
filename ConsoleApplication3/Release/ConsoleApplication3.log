@@ -1,18 +1,31 @@
-﻿Build started 10/14/2016 9:49:15 PM.
+﻿Build started 10/17/2016 2:06:58 AM.
      1>Project "C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\ConsoleApplication3\ConsoleApplication3.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (MiniProjeto 8 Rainhas.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\Projeto1Ackley.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AckleyOptimization.cpp
          AckleyOptimization.cpp
-     1>AckleyOptimization.cpp(21): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>AckleyOptimization.cpp(39): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyEEGenotype.h(60): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyEEGenotype.h(192): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyEEGenotype.h(208): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyEEGenotype.h(221): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyEEGenotype.h(237): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\eduarda\documents\visual studio 2013\projects\ackleyoptimization\consoleapplication3\ackleyEEGenotype.h(280): warning C4018: '<' : signed/unsigned mismatch
+     1>AckleyOptimization.cpp(28): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>AckleyOptimization.cpp(62): warning C4018: '<' : signed/unsigned mismatch
+     1>AckleyOptimization.cpp(71): warning C4018: '<' : signed/unsigned mismatch
+     1>AckleyOptimization.cpp(139): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>AckleyOptimization.cpp(146): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>AckleyOptimization.cpp(160): warning C4244: 'argument' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>AckleyOptimization.cpp(272): warning C4244: 'argument' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>AckleyOptimization.cpp(318): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Release\Projeto1Ackley.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Release\Projeto1Ackley.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Release\Projeto1Ackley.lib" /MACHINE:X86 /SAFESEH Release\AckleyOptimization.obj
          Release\stdafx.obj
-     1>AckleyOptimization.obj : error LNK2001: unresolved external symbol "void __cdecl ackleyOptimizationEE(int,int,int)" (?ackleyOptimizationEE@@YAXHHH@Z)
-     1>C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Release\Projeto1Ackley.exe : fatal error LNK1120: 1 unresolved externals
+     1>AckleyOptimization.obj : error LNK2001: unresolved external symbol "double __cdecl standard_variation(class std::vector<double,class std::allocator<double> > const &,double)" (?standard_variation@@YANABV?$vector@NV?$allocator@N@std@@@std@@N@Z)
+     1>AckleyOptimization.obj : error LNK2001: unresolved external symbol "double __cdecl average(class std::vector<double,class std::allocator<double> > const &)" (?average@@YANABV?$vector@NV?$allocator@N@std@@@std@@@Z)
+     1>C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\Release\Projeto1Ackley.exe : fatal error LNK1120: 2 unresolved externals
      1>Done Building Project "C:\Users\Eduarda\Documents\visual studio 2013\Projects\AckleyOptimization\ConsoleApplication3\ConsoleApplication3.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.62
+Time Elapsed 00:00:01.63
